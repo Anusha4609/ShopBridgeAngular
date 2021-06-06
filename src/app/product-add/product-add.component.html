@@ -1,0 +1,63 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <h1>Add product</h1>
+        </div>
+
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        
+        <div class="form-group">
+            <label>
+
+                Name:
+                <input formControlName="name" class="form-control" >
+            </label>
+            <div *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)">
+                Please provide a name.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Description:
+                <textarea class="form-control" formControlName="description" >
+            </textarea>
+            </label>
+            <div
+                *ngIf="myForm.get('description').invalid && (myForm.get('description').dirty || myForm.get('description').touched)">
+                Please provide description.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Price:
+                <input type="number" formControlName="price" class="form-control" >
+            </label>
+            <div *ngIf="myForm.get('price').invalid && (myForm.get('price').dirty || myForm.get('price').touched)">
+                Please provide Price.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Quantity:
+                <input type="number" formControlName="quantity" class="form-control" >
+            </label>
+            <div *ngIf="myForm.get('quantity').invalid && (myForm.get('quantity').dirty || myForm.get('quantity').touched)">
+                Please provide quantity.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Category:
+                
+            </label>
+            <select name="Category" formControlName="category_id" class="form-control" >
+                <option  *ngFor="let item of categorylist"
+                [value]="item.id" [selected]="item.id">{{item.name}}</option>
+                
+              </select>
+        </div>
+        <button type="submit"[disabled]="myForm.invalid " class="btn btn-primary">Send</button>
+    </form>
+</div>
